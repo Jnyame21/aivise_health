@@ -18,7 +18,7 @@ DATABASES = {
 
 # Cors Config
 CORS_ALLOWED_ORIGINS = [
-    "https://aivisehealth-.onrender.com",
+    "https://aivisehealth.onrender.com",
 ]
 
 # Pusher
