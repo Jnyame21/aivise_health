@@ -261,7 +261,7 @@ def client_data(request):
                     for _item_ in order_items:
                         if not int(_item_['quantity'] == 0):
                             drug_obj = DrugStock.objects.get(id=int(_item_['id']))
-                            order_item_obj = OrderItem.objects.create(order=order_obj, drug=drug_obj, quantity=_item_['order_quantity'], prescription_image=_item_['img'])
+                            order_item_obj = OrderItem.objects.create(order=order_obj, drug=drug_obj, quantity=_item_['order_quantity'])
                             drug_obj.quantity -= int(order_item_obj.quantity)
                             drug_obj.save(update_fields=['quantity'])
                             order_item_obj.update_fields()
