@@ -95,128 +95,154 @@ def query(request):
 
     # Drug.objects.bulk_create(drug_instances)
 
+    staff_data = [
+        {
+            "user": {"first_name": "Ama", "last_name": "Boateng", "email": "ama.boateng@example.com"},
+            "gender": "Female",
+            "age": 34,
+            "contact_one": "+233201234567",
+            "nationality": "Ghanaian",
+            "specialization": "General Practitioner",
+            "years_of_experience": 8,
+            "languages": ["English", "Twi"],
+            "bio": "Passionate about primary care and preventive medicine. Skilled in patient education and chronic disease management."
+        },
+        {
+            "user": {"first_name": "Kwame", "last_name": "Mensah", "email": "kwame.mensah@example.com"},
+            "gender": "Male",
+            "age": 45,
+            "contact_one": "+233208765432",
+            "contact_two": "+233558765432",
+            "nationality": "Ghanaian",
+            "specialization": "Cardiologist",
+            "years_of_experience": 15,
+            "languages": ["English", "Ewe"],
+            "bio": "Experienced cardiologist with a deep commitment to improving heart health through advanced diagnostics and patient care."
+        },
+        {
+            "user": {"first_name": "Abena", "last_name": "Owusu", "email": "abena.owusu@example.com"},
+            "gender": "Female",
+            "age": 29,
+            "contact_one": "+233240112233",
+            "contact_two": None,
+            "nationality": "Ghanaian",
+            "specialization": "Pediatrician",
+            "years_of_experience": 4,
+            "languages": ["English", "Ga"],
+            "bio": "Loves working with children and ensuring their healthy development. Focused on child-friendly communication."
+        },
+        {
+            "user": {"first_name": "Kofi", "last_name": "Asare", "email": "kofi.asare@example.com"},
+            "gender": "Male",
+            "age": 38,
+            "contact_one": "+233501234321",
+            "contact_two": "+233551234321",
+            "nationality": "Ghanaian",
+            "specialization": "Dermatologist",
+            "years_of_experience": 10,
+            "languages": ["English"],
+            "bio": "Specializes in skincare treatments and managing skin diseases. Promotes holistic skincare solutions."
+        },
+        {
+            "user": {"first_name": "Linda", "last_name": "Darko", "email": "linda.darko@example.com"},
+            "gender": "Female",
+            "age": 32,
+            "contact_one": "+233203339999",
+            "contact_two": None,
+            "nationality": "Ghanaian",
+            "specialization": "Dietitian",
+            "years_of_experience": 6,
+            "languages": ["English", "Twi"],
+            "bio": "Certified dietitian helping clients achieve nutritional goals through personalized meal plans and education."
+        },
+        {
+            "user": {"first_name": "Yaw", "last_name": "Nkansah", "email": "yaw.nkansah@example.com"},
+            "gender": "Male",
+            "age": 41,
+            "contact_one": "+233245556677",
+            "contact_two": "+233545556677",
+            "nationality": "Ghanaian",
+            "specialization": "Psychologist",
+            "years_of_experience": 13,
+            "languages": ["English", "Twi"],
+            "bio": "Experienced psychologist focused on mental health counseling and behavioral therapy for adults and teens."
+        },
+        {
+            "user": {"first_name": "Esi", "last_name": "Bonsu", "email": "esi.bonsu@example.com"},
+            "gender": "Female",
+            "age": 36,
+            "contact_one": "+233234567890",
+            "contact_two": None,
+            "nationality": "Ghanaian",
+            "specialization": "Gynecologist",
+            "years_of_experience": 12,
+            "languages": ["English", "Fante"],
+            "bio": "Dedicated to women's reproductive health and wellness. Known for compassionate care and patient advocacy."
+        },
+        {
+            "user": {"first_name": "Nana", "last_name": "Addai", "email": "nana.addai@example.com"},
+            "gender": "Other",
+            "age": 30,
+            "contact_one": "+233232323232",
+            "contact_two": "+233542323232",
+            "nationality": "Ghanaian",
+            "specialization": "Neurologist",
+            "years_of_experience": 7,
+            "languages": ["English"],
+            "bio": "Neurology expert providing care for patients with brain and nervous system disorders. Enthusiastic about brain research."
+        },
+        {
+            "user": {"first_name": "Joseph", "last_name": "Antwi", "email": "joseph.antwi@example.com"},
+            "gender": "Male",
+            "age": 50,
+            "contact_one": "+233209988776",
+            "contact_two": None,
+            "nationality": "Ghanaian",
+            "specialization": "Oncologist",
+            "years_of_experience": 20,
+            "languages": ["English", "Twi"],
+            "bio": "Veteran oncologist with two decades of experience in cancer treatment, research, and patient support."
+        },
+        {
+            "user": {"first_name": "Akua", "last_name": "Mensima", "email": "akua.mensima@example.com"},
+            "gender": "Female",
+            "age": 27,
+            "contact_one": "+233261122334",
+            "contact_two": None,
+            "nationality": "Ghanaian",
+            "specialization": "Pharmacist",
+            "years_of_experience": 3,
+            "languages": ["English", "Twi"],
+            "bio": "Friendly and knowledgeable pharmacist helping patients understand medications and stay safe with prescriptions."
+        }
+    ]
+    staff_instances = []
+    for staff_info in staff_data:
+        user_data = User.objects.create_user(
+            first_name=staff_info["user"]["first_name"],
+            last_name=staff_info["user"]["last_name"],
+            email=staff_info["user"]["email"],
+            username=staff_info["user"]["email"],
+            password=staff_info["user"]["email"]
+        )
+        staff = Staff(
+            user=user_data,
+            gender=staff_info["gender"],
+            age=staff_info["age"],
+            contact_one=staff_info["contact_one"],
+            nationality=staff_info["nationality"],
+            specialization=staff_info["specialization"],
+            years_of_experience=staff_info["years_of_experience"],
+            languages=staff_info["languages"],
+            bio=staff_info["bio"]
+
+            )
+
+        staff_instances.append(staff)
+
+    Staff.objects.bulk_create(staff_instances)
+
     return HttpResponse("<h2>Operation successful</h2>")
 
 
-staff_data = [
-    {
-        "user": {"first_name": "Ama", "last_name": "Boateng", "email": "ama.boateng@example.com"},
-        "gender": "Female",
-        "age": 34,
-        "contact_one": "+233201234567",
-        "contact_two": "+233541234567",
-        "nationality": "Ghanaian",
-        "specialization": "General Practitioner",
-        "years_of_experience": 8,
-        "languages": ["English", "Twi"],
-        "bio": "Passionate about primary care and preventive medicine. Skilled in patient education and chronic disease management."
-    },
-    {
-        "user": {"first_name": "Kwame", "last_name": "Mensah", "email": "kwame.mensah@example.com"},
-        "gender": "Male",
-        "age": 45,
-        "contact_one": "+233208765432",
-        "contact_two": "+233558765432",
-        "nationality": "Ghanaian",
-        "specialization": "Cardiologist",
-        "years_of_experience": 15,
-        "languages": ["English", "Ewe"],
-        "bio": "Experienced cardiologist with a deep commitment to improving heart health through advanced diagnostics and patient care."
-    },
-    {
-        "user": {"first_name": "Abena", "last_name": "Owusu", "email": "abena.owusu@example.com"},
-        "gender": "Female",
-        "age": 29,
-        "contact_one": "+233240112233",
-        "contact_two": None,
-        "nationality": "Ghanaian",
-        "specialization": "Pediatrician",
-        "years_of_experience": 4,
-        "languages": ["English", "Ga"],
-        "bio": "Loves working with children and ensuring their healthy development. Focused on child-friendly communication."
-    },
-    {
-        "user": {"first_name": "Kofi", "last_name": "Asare", "email": "kofi.asare@example.com"},
-        "gender": "Male",
-        "age": 38,
-        "contact_one": "+233501234321",
-        "contact_two": "+233551234321",
-        "nationality": "Ghanaian",
-        "specialization": "Dermatologist",
-        "years_of_experience": 10,
-        "languages": ["English"],
-        "bio": "Specializes in skincare treatments and managing skin diseases. Promotes holistic skincare solutions."
-    },
-    {
-        "user": {"first_name": "Linda", "last_name": "Darko", "email": "linda.darko@example.com"},
-        "gender": "Female",
-        "age": 32,
-        "contact_one": "+233203339999",
-        "contact_two": None,
-        "nationality": "Ghanaian",
-        "specialization": "Dietitian",
-        "years_of_experience": 6,
-        "languages": ["English", "Twi"],
-        "bio": "Certified dietitian helping clients achieve nutritional goals through personalized meal plans and education."
-    },
-    {
-        "user": {"first_name": "Yaw", "last_name": "Nkansah", "email": "yaw.nkansah@example.com"},
-        "gender": "Male",
-        "age": 41,
-        "contact_one": "+233245556677",
-        "contact_two": "+233545556677",
-        "nationality": "Ghanaian",
-        "specialization": "Psychologist",
-        "years_of_experience": 13,
-        "languages": ["English", "Twi"],
-        "bio": "Experienced psychologist focused on mental health counseling and behavioral therapy for adults and teens."
-    },
-    {
-        "user": {"first_name": "Esi", "last_name": "Bonsu", "email": "esi.bonsu@example.com"},
-        "gender": "Female",
-        "age": 36,
-        "contact_one": "+233234567890",
-        "contact_two": None,
-        "nationality": "Ghanaian",
-        "specialization": "Gynecologist",
-        "years_of_experience": 12,
-        "languages": ["English", "Fante"],
-        "bio": "Dedicated to women's reproductive health and wellness. Known for compassionate care and patient advocacy."
-    },
-    {
-        "user": {"first_name": "Nana", "last_name": "Addai", "email": "nana.addai@example.com"},
-        "gender": "Other",
-        "age": 30,
-        "contact_one": "+233232323232",
-        "contact_two": "+233542323232",
-        "nationality": "Ghanaian",
-        "specialization": "Neurologist",
-        "years_of_experience": 7,
-        "languages": ["English"],
-        "bio": "Neurology expert providing care for patients with brain and nervous system disorders. Enthusiastic about brain research."
-    },
-    {
-        "user": {"first_name": "Joseph", "last_name": "Antwi", "email": "joseph.antwi@example.com"},
-        "gender": "Male",
-        "age": 50,
-        "contact_one": "+233209988776",
-        "contact_two": None,
-        "nationality": "Ghanaian",
-        "specialization": "Oncologist",
-        "years_of_experience": 20,
-        "languages": ["English", "Twi"],
-        "bio": "Veteran oncologist with two decades of experience in cancer treatment, research, and patient support."
-    },
-    {
-        "user": {"first_name": "Akua", "last_name": "Mensima", "email": "akua.mensima@example.com"},
-        "gender": "Female",
-        "age": 27,
-        "contact_one": "+233261122334",
-        "contact_two": None,
-        "nationality": "Ghanaian",
-        "specialization": "Pharmacist",
-        "years_of_experience": 3,
-        "languages": ["English", "Twi"],
-        "bio": "Friendly and knowledgeable pharmacist helping patients understand medications and stay safe with prescriptions."
-    }
-]
+

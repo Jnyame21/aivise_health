@@ -7,29 +7,29 @@ ALLOWED_HOSTS = [
     'localhost',
 ]
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
 # DATABASES = {
-#     'default':  dj_database_url.config(
-#         default=os.environ.get('EXTERNAL_DB_URL'),
-#         conn_max_age=0,
-#         conn_health_checks=True,
-#     )
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
 # }
 
-INSTALLED_APPS += ['silk']
+DATABASES = {
+    'default':  dj_database_url.config(
+        default=os.environ.get('EXTERNAL_DB_URL'),
+        conn_max_age=0,
+        conn_health_checks=True,
+    )
+}
 
-GZIP_MIDDLEWARE = 'django.middleware.gzip.GZipMiddleware'
-if GZIP_MIDDLEWARE in MIDDLEWARE:
-    sec_index = MIDDLEWARE.index(GZIP_MIDDLEWARE)
-    MIDDLEWARE.insert(sec_index + 1, 'silk.middleware.SilkyMiddleware')
-else:
-    MIDDLEWARE.append('silk.middleware.SilkyMiddleware') 
+# INSTALLED_APPS += ['silk']
+
+# GZIP_MIDDLEWARE = 'django.middleware.gzip.GZipMiddleware'
+# if GZIP_MIDDLEWARE in MIDDLEWARE:
+#     sec_index = MIDDLEWARE.index(GZIP_MIDDLEWARE)
+#     MIDDLEWARE.insert(sec_index + 1, 'silk.middleware.SilkyMiddleware')
+# else:
+#     MIDDLEWARE.append('silk.middleware.SilkyMiddleware') 
 
 # Media files
 MEDIA_URL = '/media/'
@@ -47,5 +47,5 @@ PUSHER_SECRET = os.environ.get('PUSHER_SECRET_DEV')
 PUSHER_CLUSTER = os.environ.get('PUSHER_CLUSTER')
 
 # Silk
-SILKY_PYTHON_PROFILER = True
-SILKY_INTERCEPT_PERCENT = 100
+# SILKY_PYTHON_PROFILER = True
+# SILKY_INTERCEPT_PERCENT = 100
