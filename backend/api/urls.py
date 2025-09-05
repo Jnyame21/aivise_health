@@ -23,7 +23,7 @@ urlpatterns = [
     path('client/data', client_data),
 
     # query
-    path('query', query),
+    # path('query', query),
 ]
 if settings.DEBUG:
     # urlpatterns += path('silk/', include('silk.urls', namespace='silk')),

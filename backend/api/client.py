@@ -191,6 +191,9 @@ def client_data(request):
                 Facility working ours: 
                 Monday - Friday : 8:30am - 730pm
 
+                Facility Location:
+                35 Aviation Road, Airport Residential Area, Accra, Ghana
+
                 As Cassandra, you assist users by:
                 - Answering health-related questions
                 - Recommending appropriate services or products
@@ -209,7 +212,6 @@ def client_data(request):
             {history}
             """
 
-            print(prompt_histry)
             message_categories = """
             1. In-person consultation (consultation booking and scheduling)
             2. E-pharmacy (medicine ordering and delivery)
@@ -236,10 +238,9 @@ def client_data(request):
                 additional_data = ''
                 if category_number == 1:
                     staff_data = json.dumps(StaffSerializerOne(Staff.objects.all(), many=True).data, indent=2)
-                    additional_data = f"Available staff: {staff_data}"
-                elif category_number == 2:
-                    drugs_data = json.dumps(DrugStockSerializerOne(DrugStock.objects.all(), many=True).data, indent=2)
-                    additional_data = f"Available drugs: {drugs_data}"
+                    additional_data = f"Available staff for consultations: {staff_data}"
+                drugs_data = json.dumps(DrugStockSerializerOne(DrugStock.objects.all(), many=True).data, indent=2)
+                additional_data = f"Available Medicines In Stock: {drugs_data}"
                 prompt_2 = f"{intro}\n{instructions}\n\n{additional_data}\n\n{profile_history_message}"
                 gemini_message = send_prompt_to_gemini(prompt_2)
                 user_message_obj = Message.objects.create(client=client, sender='user', message=user_message)

@@ -136,7 +136,7 @@ const closeOverlay = (element: string) => {
           <v-chip :size="elementsStore.btnSize2" color="blue">{{itemProperties.name}}: Description</v-chip>
         </div>
         <div class="overlay-card-content-container" v-if="itemProperties">
-          {{ itemProperties.description }}
+          <pre>{{ itemProperties.description }}</pre>
         </div>
         <div class="overlay-card-action-btn-container"></div>
       </div>

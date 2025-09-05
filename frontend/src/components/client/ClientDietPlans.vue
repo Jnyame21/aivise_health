@@ -222,9 +222,9 @@ const closeOverlay = (element: string) => {
     <v-data-table-virtual class="table" v-if="userAuthStore.fetchedDataLoaded" :headers="itemHeaders.filter(item=> item.key !== 'data-table-expand')" :items="itemData" fixed-header multi-sort>
       <template v-slot:top>
         <v-toolbar color="#333333">
-          <v-text-field v-model="itemSearch" label="Search" prepend-inner-icon="mdi-magnify" variant="solo-filled" density="compact" />
           <v-spacer></v-spacer>
-          <v-btn class="bg-blue mr-3" @click="showOverlay('AddDietPlanOverlay')" :size="elementsStore.btnSize1" prepend-icon="mdi-plus">DIET PLAN</v-btn>
+          <v-btn class="bg-blue mr-3" @click="showOverlay('AddDietPlanOverlay')" :size="elementsStore.btnSize1" prepend-icon="mdi-plus">CREATE A DIET PLAN</v-btn>
+          <v-spacer></v-spacer>
         </v-toolbar>
       </template>
       <template v-slot:headers="{ columns, isSorted, getSortIcon, toggleSort, sortBy }">

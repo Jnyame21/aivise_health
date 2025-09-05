@@ -3,7 +3,6 @@ import { RouterView } from 'vue-router'
 import { onBeforeMount } from 'vue';
 import { useUserAuthStore } from '@/stores/userAuthStore';
 import { useElementsStore } from '@/stores/elementsStore';
-import TheLoader from '@/components/TheLoader.vue';
 import { defaultAxiosInstance } from '@/utils/axiosInstance';
 
 const elementsStore = useElementsStore()

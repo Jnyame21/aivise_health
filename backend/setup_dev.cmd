@@ -1,3 +1,3 @@
 @echo off
 set DJANGO_SETTINGS_MODULE=backend.development
-a_aivise_health
+a_aivise_health_venv_win11

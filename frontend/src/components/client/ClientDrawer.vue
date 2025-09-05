@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useUserAuthStore } from '@/stores/userAuthStore';
 import { useElementsStore } from '@/stores/elementsStore';
-import type { ClientUserData } from '@/utils/types_utils';
 
 const userAuthStore = useUserAuthStore()
 const elementsStore = useElementsStore()
@@ -25,8 +24,6 @@ document.addEventListener('click', (event: MouseEvent)=>{
         <div class="flex-all-c profile-image-container">
           <img class="img" v-if="userAuthStore.userData" :src="typeof userAuthStore.userData?.img ==='string' ? userAuthStore.userData.img : userAuthStore.userData?.img?.url">
         </div>
-
-        <v-card-title v-if="userAuthStore.userData" class="drawer-head">PERSONAL INFORMATION</v-card-title>
 
         <v-list-item v-if="userAuthStore.userData" class="drawer-item" prepend-icon="mdi-account-outline">
           <v-list-item-title class="drawer-title">

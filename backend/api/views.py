@@ -29,7 +29,7 @@ import imghdr
 import traceback
 
 def root(request):
-    return HttpResponse("<h1>NexaSuite</h1>")
+    return HttpResponse("<h1>Aivise Health</h1>")
 
 
 @api_view(['GET'])

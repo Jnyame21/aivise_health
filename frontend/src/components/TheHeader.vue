@@ -27,7 +27,7 @@ const showOverlay = (element:string) => {
     <div class="flex-all">
       <v-chip v-if="elementsStore.pusherState ==='connected'" color="green" :size="elementsStore.btnSize1">{{ elementsStore.pusherState }}</v-chip>
       <v-chip v-if="elementsStore.pusherState ==='connecting'" color="yellow" :size="elementsStore.btnSize1">{{ elementsStore.pusherState }}</v-chip>
-      <v-chip color="yellow" :size="elementsStore.btnSize1">WORKING HOURS => MON - FRI: 8:30AM - 7:30PM</v-chip>
+      <v-chip color="yellow" :size="elementsStore.btnSize1">Our Working Hours => MON - FRI: 8:30AM - 7:30PM</v-chip>
     </div>
     <div>
       <v-icon v-if="!elementsStore.onDesk" @click.stop="elementsStore.navDrawer = !elementsStore.navDrawer" class="menu-icon" icon="mdi-menu" size="x-large" color="yellow" />

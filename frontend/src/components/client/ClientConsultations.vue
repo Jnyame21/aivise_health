@@ -154,7 +154,7 @@ const closeOverlay = (element: string) => {
                 <div class="d-flex flex-wrap">
                   <v-chip class="ma-1" color="blue-grey" variant="flat" size="small">{{ itemProperties.staff.gender }}, {{ itemProperties.staff.age }} yrs</v-chip>
                   <v-chip class="ma-1" color="green" variant="flat" size="small">{{ itemProperties.staff.nationality }}</v-chip>
-                  <v-chip class="ma-1" color="purple" variant="flat" size="small">{{ itemProperties.staff.years_of_experience }} yrs exp</v-chip>
+                  <v-chip class="ma-1" color="purple" variant="flat" size="small" v-if="itemProperties.staff.years_of_experience">{{ itemProperties.staff.years_of_experience }} yrs exp</v-chip>
                   <v-chip v-for="lang in itemProperties.staff.languages" :key="lang" class="ma-1" color="deep-orange" variant="flat" size="small">{{ lang }}</v-chip>
                 </div>
                 <div class="mt-3 text-body-2"><strong>Bio:</strong> {{ itemProperties.staff.bio || 'No bio available' }}</div>
@@ -175,9 +175,9 @@ const closeOverlay = (element: string) => {
           <v-chip :size="elementsStore.btnSize2" color="red">NB: Fields with [*] are mandatory.</v-chip>
         </div>
         <div class="overlay-card-content-container">
-          <v-text-field class="input-field" v-model="itemObj.date" label="DATE [*]" type="date" clearable variant="solo-filled" density="comfortable" hint="Select the date for the consultation" prepend-icon="mdi-calendar" persistent-hint />
-          <v-text-field class="input-field" v-model="itemObj.time" label="TIME [*]" type="time" clearable variant="solo-filled" density="comfortable" hint="Select the time for the consultation" prepend-icon="mdi-clock" persistent-hint />
-          <v-textarea col="5" v-model="itemObj.purpose" label="PURPOSE [*]" clearable variant="solo-filled" hint="What is the purpose of the consultation?" density="comfortable" persistent-hint />
+          <v-text-field class="input-field" v-model="itemObj.date" label="DATE [*]" type="date" clearable variant="solo-filled" density="comfortable" hint="Select a date for your appointment." prepend-icon="mdi-calendar" persistent-hint />
+          <v-text-field class="input-field" v-model="itemObj.time" label="TIME [*]" type="time" clearable variant="solo-filled" density="comfortable" hint="Select a time for your appointment." prepend-icon="mdi-clock" persistent-hint />
+          <v-textarea col="5" v-model="itemObj.purpose" label="PURPOSE [*]" clearable variant="solo-filled" hint="Briefly describe the reason for your visit (e.g. Annual check-up, post-op follow-up, or vaccination.)" density="comfortable" persistent-hint />
         </div>
         <div class="overlay-card-action-btn-container">
           <v-btn @click="createItem()" :disabled="!(itemObj.date && itemObj.time && itemObj.purpose)" :ripple="false" variant="flat" type="submit" color="black" size="small" append-icon="mdi-checkbox-marked-circle">BOOK</v-btn>
@@ -192,9 +192,9 @@ const closeOverlay = (element: string) => {
     <v-data-table-virtual class="table" v-if="userAuthStore.fetchedDataLoaded" :headers="itemHeaders.filter(item=> item.key !== 'data-table-expand')" :items="itemData" :search="itemSearch" show-expand fixed-header multi-sort>
       <template v-slot:top>
         <v-toolbar color="#333333">
-          <v-text-field v-model="itemSearch" label="Search" prepend-inner-icon="mdi-magnify" variant="solo-filled" density="compact" />
           <v-spacer></v-spacer>
-          <v-btn class="bg-blue mr-3" @click="showOverlay('BookConsultationOverlay')" :size="elementsStore.btnSize1" prepend-icon="mdi-plus">CONSULTATION</v-btn>
+          <v-btn class="bg-blue mr-3" @click="showOverlay('BookConsultationOverlay')" :size="elementsStore.btnSize1" prepend-icon="mdi-plus">BOOK A CONSULTATION</v-btn>
+          <v-spacer></v-spacer>
         </v-toolbar>
       </template>
       <template v-slot:headers="{ columns, isSorted, getSortIcon, toggleSort, sortBy }">
